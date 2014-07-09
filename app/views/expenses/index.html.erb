@@ -1,0 +1,18 @@
+
+<div class="content">
+	
+	<a href="#" class="button"><i class="foundicon-plus"></i> Add</a>
+
+	<%= render 'expenses/filters' %>
+
+	<ul class="expenses-list">
+		<li>
+			<%= render 'expenses/form' %>
+		</li>
+		<% (0..15).each do %>
+		<%= render 'expenses/expense' %>
+		<% end %>
+	</ul>
+
+
+</div><!-- end content -->

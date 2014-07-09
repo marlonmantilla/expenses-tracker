@@ -1,0 +1,77 @@
+// Place all the styles related to the Expenses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.no-padding{
+	padding: 0;
+}
+.bold{
+	font-weight: bold !important;
+}
+.content{
+	background: white;
+	min-height: 500px;
+	padding: 1em 1em;
+}
+
+.fullWidth {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: initial;
+}
+
+.expenses-list{
+	width: 86%;
+	list-style: none;
+	margin: 0;
+	li{
+		border-bottom: 1px solid #DBDBDB;
+		&:hover{
+			background: rgb(237, 246, 255);
+		}
+		div.column{
+			line-height: 3em;
+		}
+		.amount{
+			color: rgb(255, 145, 26);
+			font-weight: bold;
+			font-size: 1.5em;
+			padding-top: 0.5em;
+			display: block;
+		}
+		.description{
+			display: block;
+			font-weight: bold;
+			line-height: 1.5em;
+			padding-top: 1em;
+		}
+		.comment{
+			font-size: 0.8em;
+			line-height: 1.2em;
+			display: block;
+		}
+		time{
+			color: gray;
+			padding-top: 1em;
+			font-size: 0.8em;
+			display: block;
+		}
+		.actions-buttons{
+			padding-top: 0.5em;
+		}
+	}
+}
+
+.edit-expense-container{
+	padding: 1em;
+}
+
+.filters{
+	h3{
+		padding-left: 0.5em;
+	}
+	label{
+		font-weight: light;
+		font-style: italic;
+	}
+}
