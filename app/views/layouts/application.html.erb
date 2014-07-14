@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +22,20 @@
       </div>
 
       <div class="small-11 columns no-padding">
+        <% flash.each do |name, msg| -%>
+          <div data-alert class="alert-box <%= name %>">
+            <%= msg %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <% end %>
+        
+        <% unless user_signed_in? %>
+          <div class="welcome-message text-center">
+            <h1>The fastest way of keep track of your expenses!</h1>
+            <p>With Expense Tracker you will enjoy keeping track of your expenses, give it a try is <b>FREE!</b></p>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
 

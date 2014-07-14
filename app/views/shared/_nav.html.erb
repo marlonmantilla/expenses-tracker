@@ -10,13 +10,16 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="active"><a href="#">Register</a></li>
-      <li class="has-dropdown">
-        <a href="#">Account</a>
-        <ul class="dropdown">
-          <li><a href="#">Logout</a></li>
-        </ul>
-      </li>
+      <% if user_signed_in? %>
+        <li class="has-dropdown">
+          <a href="#">Account</a>
+          <ul class="dropdown">
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      <% else %>
+        <li class="active"><%= link_to 'Sign Up', new_user_registration_path %></li>
+      <% end %>
     </ul>
 
     <!-- Left Nav Section -->

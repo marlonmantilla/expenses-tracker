@@ -20,3 +20,6 @@ end
 
 gem "js-routes"
 gem 'foundation-rails'
+
+gem 'devise'
+gem 'bower-rails'
