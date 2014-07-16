@@ -1,22 +1,23 @@
 <div class="row filters" ng-show="filter">
 <h3>Filter by:</h3>
-<div class="small-1 column">
-	<label>Amount less than...</label>
-	<input type="text" placeholder="$10" />
-</div>
-<div class="small-3 column">
-	<label>Text</label>
-	<input type="text" placeholder="Description..." />
-	<input type="text" placeholder="Comment..." />
-</div>	
-<div class="small-2 column left">
-	<label>Between dates</label>
-	<input type="text" class="datepicker" placeholder="Start date..." />
-	<input type="text" class="datepicker" placeholder="End date..." />
-</div>
-<div class="small-2 column left"><br>
-	<input type="submit" value="Search" class="button small" />
-	<a href="" ng-click="reset()">Cancel</a>
-</div>
-	
+	<form ng-submit="search(searchExpense)" novalidate>
+		<div class="small-1 column">
+			<label>Amount less than...</label>
+			<input type="text" ng-model="searchExpense.amount" placeholder="$10" />
+		</div>
+		<div class="small-3 column">
+			<label>Text</label>
+			<input type="text" ng-model="searchExpense.description" placeholder="Description..." />
+			<input type="text" ng-model="searchExpense.comment" placeholder="Comment..." />
+		</div>	
+		<div class="small-2 column left">
+			<label>Between dates</label>
+			<input type="text" ng-model="searchExpense.start_date" class="datepicker" placeholder="Start date..." />
+			<input type="text" ng-model="searchExpense.end_date" class="datepicker" placeholder="End date..." />
+		</div>
+		<div class="small-2 column left"><br>
+			<input type="submit" value="Search" class="button small" />
+			<a href="" ng-click="resetFilter()">Cancel</a>
+		</div>
+	</form>
 </div><!-- end row -->

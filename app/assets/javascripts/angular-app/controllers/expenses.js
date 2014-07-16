@@ -2,6 +2,7 @@ angular.module('app').controller('ExpensesCtrl', ['Expense', '$scope',
 	function(Expense, $scope){
 		$scope.expenses = Expense.query();
 		$scope.newExpense = new Expense();
+		$scope.searchExpense = new Expense();
 		$scope.filter = false;
 
 		$scope.save = function(expense){
@@ -31,5 +32,19 @@ angular.module('app').controller('ExpensesCtrl', ['Expense', '$scope',
     $scope.showSearch = function(){
     	$scope.filter = !$scope.filter;
     }
+
+    $scope.resetFilter = function(){
+    	$scope.searchExpense = new Expense();
+    	$scope.expenses = Expense.query();
+    }
+
+    $scope.search = function(expense){
+    	Expense.query({ description: expense.description, comment: expense.comment, filters: true }).$promise.then(function(response) {
+    		_.each(response, function(item) {
+    			$scope.expenses.push(item);
+    		});
+    	});
+    }
+
 	}
 ]);
