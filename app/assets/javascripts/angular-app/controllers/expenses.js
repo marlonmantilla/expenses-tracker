@@ -36,6 +36,7 @@ angular.module('app').controller('ExpensesCtrl', ['Expense', '$scope',
     $scope.resetFilter = function(){
     	$scope.searchExpense = new Expense();
     	$scope.expenses = Expense.query();
+    	$scope.filter = false;
     }
 
     $scope.search = function(expense){
