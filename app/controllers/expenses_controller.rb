@@ -2,7 +2,7 @@ class ExpensesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@expenses = Expense.all
+  	@expenses = current_user.expenses
   	filter_expenses
   	respond_to do |format|
   		format.html
@@ -11,7 +11,7 @@ class ExpensesController < ApplicationController
   end
 
   def show
-  	@expense = Expense.find_by(id: params[:id])
+  	@expense = current_user.expenses.find_by(id: params[:id])
   	if @expense
   		render json: @expense, status: 200
   	else
@@ -20,7 +20,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
-  	@expense = Expense.new(expense_params)
+  	@expense = current_user.expenses.build(expense_params)
   	if @expense.save
   		render json: @expense, status: 201, location: @contact
   	else
@@ -29,7 +29,7 @@ class ExpensesController < ApplicationController
   end
 
   def update
-  	@expense = Expense.find_by(id: params[:id])
+  	@expense = current_user.expenses.find_by(id: params[:id])
   	if @expense && @expense.update_attributes(expense_params)
   		render json: @expense, status: 200
   	else
@@ -38,7 +38,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-  	@expense = Expense.find_by(id: params[:id])
+  	@expense = current_user.expenses.find_by(id: params[:id])
   	@expense.destroy if @expense
   	render nothing: true
   end

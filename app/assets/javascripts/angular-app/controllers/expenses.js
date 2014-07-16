@@ -40,7 +40,12 @@ angular.module('app').controller('ExpensesCtrl', ['Expense', '$scope',
     }
 
     $scope.search = function(expense){
-    	Expense.query({ amount: expense.amount, description: expense.description, comment: expense.comment, filters: true }).$promise.then(function(response) {
+    	Expense.query({ amount: expense.amount, 
+    									description: expense.description, 
+    									comment: expense.comment, 
+    									filters: true,
+    									start_date: expense.start_date,
+    									end_date: expense.end_date }).$promise.then(function(response) {
     		$scope.expenses = (response);
     	});
     }

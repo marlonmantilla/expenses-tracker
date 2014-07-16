@@ -2,7 +2,12 @@ require 'spec_helper'
 
 describe ExpensesController do
 
-	let(:expense){ FactoryGirl.create(:expense) }
+	before do
+		@user = FactoryGirl.create(:user, email: "test@example.com", password: "some_password")
+		sign_in @user
+	end
+
+	let(:expense){ FactoryGirl.create(:expense, user: @user ) }
 
 	it 'should response 200 status' do
 		get :index
@@ -23,6 +28,7 @@ describe ExpensesController do
 		expect(assigns(:expense)).to be_present
 		response.content_type.should == Mime::JSON.to_s
 		Expense.last.description.should == assigns(:expense).description
+		expect(@user.expenses.count).to eql(1)
 	end
 
 	it 'should NOT save expense with wrong parameters' do
@@ -40,6 +46,7 @@ describe ExpensesController do
 		response.status.should == 200
 		response.content_type.should == Mime::JSON.to_s
 		expense.reload.description.should == 'Setting Description'
+		expect(@user.expenses.count).to eql(1)
 	end
 
 	it 'should delete an expense' do
@@ -62,10 +69,14 @@ describe ExpensesController do
 
 	it 'should return expenses filtered' do
 		start_date = Time.now
-		expense1 = FactoryGirl.create(:expense, description: 'Tax Payment', comment: 'Need to pay this soon', amount: 150, start_date: start_date)
-		expense2 = FactoryGirl.create(:expense, description: 'Transport', comment: 'Transport payments', amount: 15, start_date: start_date + 1.day )
-		expense3 = FactoryGirl.create(:expense, description: 'Food', comment: 'This is a must', amount: 450, start_date: start_date - 2.days )
-		get :index, { format: :json, filters: { description: 'Tax', comment: 'payments', amount: 150, start_date: start_date.strftime("%Y-%m-%d %I:%M %p"), end_date: (start_date+4.days).strftime("%Y-%m-%d %I:%M %p") } }
+		expense1 = FactoryGirl.create(:expense, description: 'Tax Payment', comment: 'Need to pay this soon', amount: 150, start_date: start_date, user: @user)
+		expense2 = FactoryGirl.create(:expense, description: 'Transport Payment', comment: 'Transport payments', amount: 15, start_date: start_date + 1.day, user: @user )
+		expense3 = FactoryGirl.create(:expense, description: 'Food', comment: 'This is a must', amount: 450, start_date: start_date - 2.days, user: @user )
+		get :index, { format: :json, filters: true, description: 'Payment', 
+																						comment: "", 
+																						amount: 150, 
+																						start_date: (start_date).strftime("%Y-%m-%d %I:%M %p"), 
+																						end_date: (start_date + 4.days).strftime("%Y-%m-%d %I:%M %p") }
 		response.status.should == 200
 		response.content_type.should == Mime::JSON.to_s
 		expect(assigns(:expenses).count).to eql(2)
