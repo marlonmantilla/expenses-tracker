@@ -23,3 +23,5 @@ gem 'foundation-rails'
 
 gem 'devise'
 gem 'bower-rails'
+gem 'angular_rails_csrf'
+gem 'foundation-datetimepicker-rails'

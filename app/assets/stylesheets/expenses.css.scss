@@ -28,6 +28,9 @@
 		border-bottom: 1px solid #DBDBDB;
 		&:hover{
 			background: rgb(237, 246, 255);
+			.buttons{
+				display: block;
+			}
 		}
 		div.column{
 			line-height: 3em;
@@ -81,5 +84,16 @@
 	h1{
 		color: #ff911a;
 		text-shadow: 1px 1px 1px #252525;
+	}
+}
+
+input.ng-invalid.ng-dirty{
+	border: 1px solid red !important;
+}
+
+.buttons{
+	display: none;
+	.button{
+		margin: 0;
 	}
 }

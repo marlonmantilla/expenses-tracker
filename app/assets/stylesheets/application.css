@@ -15,6 +15,6 @@
  *= require general_foundicons
  *= require_self
  *= require expenses
-
+ *= require jquery-ui.min
 
  */

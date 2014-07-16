@@ -1,19 +1,8 @@
-<div class="row filters">
+<div class="row filters" ng-show="filter">
 <h3>Filter by:</h3>
-<div class="small-3 column">
-	<div class="row">
-	  <div class="small-12 columns">
-	  	<label>Amount</label>
-	    <div class="range-slider" data-slider data-options="display_selector: #sliderOutput3;">
-	      <span class="range-slider-handle"></span>
-	      <span class="range-slider-active-segment"></span>
-	    </div>
-	  </div>
-	  <div class="small-12 columns">
-	  	Less than
-	    $<span id="sliderOutput3"></span>
-	  </div>
-	</div>
+<div class="small-1 column">
+	<label>Amount less than...</label>
+	<input type="text" placeholder="$10" />
 </div>
 <div class="small-3 column">
 	<label>Text</label>
@@ -22,8 +11,12 @@
 </div>	
 <div class="small-2 column left">
 	<label>Between dates</label>
-	<input type="text" placeholder="Start date..." />
-	<input type="text" placeholder="End date..." />
+	<input type="text" class="datepicker" placeholder="Start date..." />
+	<input type="text" class="datepicker" placeholder="End date..." />
 </div>
-
+<div class="small-2 column left"><br>
+	<input type="submit" value="Search" class="button small" />
+	<a href="" ng-click="reset()">Cancel</a>
+</div>
+	
 </div><!-- end row -->

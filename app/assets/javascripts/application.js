@@ -13,9 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require foundation-datetimepicker
+//= require lodash
 //= require angular
+//= require angular-animate
 //= require angular-route
 //= require angular-resource
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){ 
+	$(document).foundation(); 
+	// $( ".datepicker" ).datepicker({ minDate: new Date() }); 
+	$('.datepicker').fdatetimepicker();
+});

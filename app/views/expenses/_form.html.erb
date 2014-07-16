@@ -1,14 +1,17 @@
-<!-- <div class="edit-expense-container row">
-	<div class="small-1 column" data-equalizer-watch>
-		<input type="text" placeholder="$0" />
-	</div>
-	<div class="small-5 column" data-equalizer-watch>
-		<input type="text" placeholder="Description..." />
-		<input type="text" placeholder="Comment..." />
-	</div>
-	<div class="small-2 column left" data-equalizer-watch>
-		<input type="text" placeholder="July 08, 2014" />
-		<input type="submit" value="Save" class="button small" />
-		<a href="">Cancel</a>
-	</div>
-</div> -->
+<h3>Add expense</h3>
+<div class="edit-expense-container row">
+	<form name="expenseForm" ng-submit="expenseForm.$valid && save(newExpense)" novalidate>
+		<div class="small-1 column" data-equalizer-watch>
+			<input type="text" placeholder="$0" ng-model="newExpense.amount" required />
+		</div>
+		<div class="small-5 column" data-equalizer-watch>
+			<input type="text" placeholder="Description..." ng-model="newExpense.description" required />
+			<input type="text" placeholder="Comment..." ng-model="newExpense.comment" />
+		</div>
+		<div class="small-2 column left" data-equalizer-watch>
+			<input type="text" class="datepicker" placeholder="July 08, 2014" ng-model="newExpense.start_date" required />
+			<input type="submit" value="Save" class="button small" />
+			<a href="" ng-click="reset()">Cancel</a>
+		</div>
+	</form>
+</div>

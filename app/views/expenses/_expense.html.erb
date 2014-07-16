@@ -1,19 +1,20 @@
-<li >
+<li ng-repeat="expense in expenses">
 	<div class="row" data-equalizer>
-		<div class="small-1 column" data-equalizer-watch>
-			<span class="amount">$222</span>
+		<div class="small-2 column" data-equalizer-watch>
+			<span class="amount">{{ expense.amount | currency }}</span>
 		</div>
-		<div class="small-5 column" data-equalizer-watch>
-			<span class="description">Codeschool subscription</span>
-			<span class="comment">Monthly fee for screencasts, full access to all courses.</span>
+		<div class="small-4 column" data-equalizer-watch>
+			<span class="description">{{ expense.description }}</span>
+			<span class="comment">{{ expense.comment }}</span>
 		</div>
 		<div class="small-2 column" data-equalizer-watch>
-			<time>July 08, 2014</time>
+			<time>{{ expense.start_date | date:'medium' }}</time>
 		</div>
 		<div class="small-2 column left actions-buttons" data-equalizer-watch>
-			<a href="#" class="button tiny">Edit</a>
-			<a href="#" class="button alert tiny">Remove</a>
+			<div class="buttons">
+				<a href="#" class="button tiny" ng-click="edit(expense)">Edit</a>
+				<a href="#" class="button alert tiny" ng-click="remove(expense)">Remove</a>
+			</div>
 		</div>
 	</div>
-	<%= render 'expenses/form' %>
 </li>
