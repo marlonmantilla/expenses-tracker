@@ -27,4 +27,3 @@ gem 'bower-rails'
 gem 'angular_rails_csrf'
 gem 'foundation-datetimepicker-rails'
 gem 'rails_12factor', group: :production
-gem "js-routes"
