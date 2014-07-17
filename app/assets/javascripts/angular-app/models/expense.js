@@ -1,6 +1,6 @@
 angular.module('app').factory('Expense', function($resource){
 
-	var Expense = $resource('http://localhost:9000/expenses/:id.json', { id: '@id' }, {
+	var Expense = $resource( Routes.expenses_path() + '/:id.json', { id: '@id' }, {
 		update: {
 			method: 'PUT'
 		}
