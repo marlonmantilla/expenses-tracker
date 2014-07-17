@@ -50,8 +50,8 @@ class ExpensesController < ApplicationController
 
   def filter_expenses
   	if params[:filters]
-  		@expenses = @expenses.where("description like ?", "%#{params[:description]}%") #if params[:description]
-      @expenses = @expenses.where("comment like ?", "%#{params[:comment]}%")
+  		@expenses = @expenses.where("description ilike ?", "%#{params[:description]}%") #if params[:description]
+      @expenses = @expenses.where("comment ilike ?", "%#{params[:comment]}%")
   		@expenses = @expenses.where("amount <= ?", params[:amount]) if params[:amount]
   		start_date = Time.parse(params[:start_date]) rescue Time.now
   		end_date = Time.parse(params[:end_date]) rescue Time.now
