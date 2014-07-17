@@ -1,4 +1,4 @@
-angular.module('app').factory('Expense', function($resource){
+angular.module('app').factory('Expense', ['$resource' , function($resource){
 
 	var Expense = $resource( Routes.expenses_path() + '/:id.json', { id: '@id' }, {
 		update: {
@@ -8,4 +8,4 @@ angular.module('app').factory('Expense', function($resource){
 
 	return Expense;
 
-});
+}]);
